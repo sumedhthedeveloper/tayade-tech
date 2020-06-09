@@ -12,4 +12,8 @@ public class MyThread  extends Thread{
 	 public void run(String s) {
 		 System.out.println(" baz");
 	 }
+	 
+	 public void run2(String s) {
+		 System.out.println(" baz");
+	 }
 }
