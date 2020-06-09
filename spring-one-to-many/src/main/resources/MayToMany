@@ -1,0 +1,18 @@
+Both Student and Course classes are annotated with the Entity annotation to indicate that they are JPA entities.
+
+The @Table annotation is used to specify the name of the database table that should be mapped to this entity.
+
+The id attributes are annotated with both @Id and @GeneratedValue annotations. The former annotation indicates that they are the primary keys of the entities. 
+The latter annotation defines the primary key generation strategy. In the above case, we have declared that the primary key should be an AUTO INCREMENT field.
+
+@ManyToMany Annotation
+A many-to-many relationship between two entities is defined by using the @ManyToMany annotation in Spring Data JPA. 
+It uses the mappedBy attribute to indicate the entity that owns the bidirectional relationship. In a bidirectional relationship, 
+the @ManyToMany annotation is defined in both entities but only one entity can own the relationship. 
+We've picked the Student class as an owner of the relationship in the above example.
+
+@JoinTable Annotation
+The @JoinTable annotation defines the join table between two entities on the owner's side of the relationship. 
+We have used this annotation to define the students_courses table. 
+If the @JoinTable annotation is left out, the default values of the annotation elements apply. 
+The name of the join table is supposed to be the table names of the associated primary tables concatenated together (owning side first) using an underscore.

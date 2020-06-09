@@ -1,0 +1,56 @@
+server: 
+     port: 8080
+     
+app: 
+    name: My App
+    description: Welcome to ${app.name}
+
+my: 
+  greeting: Hello World!
+  list: 
+      values: One,Two,Three
+      
+dbValues: "{connectionString: 'https://-----',username: 'usrname',password: 'passwd'}"
+
+db: 
+  connection: default-connection-string-here
+  host: 127.0.0.1
+  port: 1200
+
+#<!--  below property is used for actuator -->
+management: 
+   endpoints: 
+    web: 
+     exposure: 
+       include: "*"
+
+#application.yml is default properties file, but by specifying below property you can override it eg. application-<profile name>.yml -> application-dev.yml
+#and profile can only be active through default application.properties OR application.yml file
+#you can also override the profile using commandline arguement no matter what profile is already active - java -jar spring-boot-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=test
+spring.profiles.active: dev
+
+#This below spring property is used to fetched the application.properties from GIT REPO, which later override the default application.properties
+#This project Required 'config client' tool in pom.xml to use application.properties file.
+#http://localhost:8888 is the url from spring-cloud-config-server project. Which is created by adding 'config server' tool in pom.xml 
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      
+#1 - This below spring property will look for application specific properties file in GIT REPO.  
+#2 - If you make any changes to application.properties from GIT REPO then how to reflect those property variables on running server without stopping it.
+#2.1 - First you need to be have below dependency in your project, Then your controller need to be Annotated with @RefreshScope
+#    <dependency>
+#      <groupId>org.springframework.boot</groupId>
+#      <artifactId>spring-boot-starter-actuator</artifactId>
+#    </dependency>  
+  
+#2.2 - Then you have to hit the below url in postman
+#		 curl --location --request POST 'localhost:8080/actuator/refresh' \
+#		 --header 'Content-Type: application/json' \
+#		 --header 'Accept: application/json' 
+
+  application:
+    name: spring-boot-config
+ 
+      
