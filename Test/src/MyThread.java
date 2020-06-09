@@ -13,7 +13,4 @@ public class MyThread  extends Thread{
 		 System.out.println(" baz");
 	 }
 	 
-	 public void run2(String s) {
-		 System.out.println(" baz");
-	 }
 }
