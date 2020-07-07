@@ -11,7 +11,7 @@ public class Page implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int number;
+    private int pageNumber;
     private String content;
     private String chapter;
 
@@ -22,8 +22,8 @@ public class Page implements Serializable {
     public Page() {
     }
 
-    public Page(int number, String content, String chapter, Book book) {
-        this.number = number;
+    public Page(int pageNumber, String content, String chapter, Book book) {
+        this.pageNumber = pageNumber;
         this.content = content;
         this.chapter = chapter;
         this.book = book;
