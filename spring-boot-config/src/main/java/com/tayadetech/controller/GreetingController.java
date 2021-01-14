@@ -6,11 +6,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RefreshScope
+//@PropertySource("classpath:application2.yml")
 public class GreetingController {
 
 	@Value("${my.greeting: Default Value}") //In order to use any external properties file, keep that external properties file in same folder of as jar or war file 
@@ -32,6 +34,6 @@ public class GreetingController {
 	@GetMapping("/greeting")
 	public String greeting()
 	{
-		return  greetingMessage+" "+staticMessage+" "+listMessage+" "+dbSettings.getConnection();
+		return  greetingMessage+" "+staticMessage+" "+listMessage+" "+dbSettings.getConnection()+"  <<< ### >>>"+dbValues;
 	}
 }
